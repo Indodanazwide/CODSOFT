@@ -1,33 +1,37 @@
-import string
-import random
+def arithmetic_operation():
+    first_num = float(input("Enter first number: "))
+    operator = str(input("Enter operator: "))
+    second_num = float(input("Enter second number: "))
 
-def password_check():
-    password_length = input("Enter password length from 8 to 15: ")
+    add = first_num + second_num
+    subtract = first_num - second_num
+    divide = first_num / second_num
+    multiply = first_num * second_num
 
-    while not (8 <= int(password_length) <= 15):
-        print("\nInvalid input. Password length must be between 8 and 15.")
-        password_length = input("\nEnter password length from 8 to 15: ")
+    print("Your answer is")
 
-    return int(password_length)
+    if operator == "+":
+        print(add)
+    elif operator == "-":
+        print(subtract)
+    elif operator == "/":
+        if second_num == 0:
+            print("Cannot divide by zero")
+        else:
+            print(divide)
+    elif operator == "*":
+        print(multiply)
+    else:
+        print("Invalid operator!")
 
-def password_generator():
-    password_length = password_check()
-   
-    uppercase_letters = string.ascii_uppercase
-    lowercase_letters = string.ascii_lowercase
-    digits = string.digits
-    specials = string.punctuation
+arithmetic_operation()
 
-    password_panctuation = random.sample(specials, 2)
-    password_numbers = random.sample(digits, 2)
-    password_uppercase = random.sample(uppercase_letters, 1)
-    password_lowercase = random.sample(lowercase_letters, password_length - 5)
-    
-    string_password = password_panctuation + password_numbers + password_uppercase + password_lowercase
-    
-    random.shuffle(string_password)
-    password = "".join(string_password)
-    
-    print("Recommended password is: " + password)
-
-password_generator()
+while True:
+    option_to_continue = input("Do you want to continue. Choose Yes or No: ")
+    if option_to_continue == "Yes":
+        arithmetic_operation()
+    elif option_to_continue == "No":
+        print("Thanks for using the calculator")
+        break
+    else:
+        print("Invalid option!")
